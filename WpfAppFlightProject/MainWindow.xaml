@@ -1,0 +1,48 @@
+﻿<Window x:Class="WpfAppFlightProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppFlightProject"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        TextElement.FontWeight="ExtraBold"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        
+    </Window.Resources>
+    <Grid>
+        <Label Content="Airline Companies" HorizontalAlignment="Left" Margin="68,23,0,0" VerticalAlignment="Top" Width="130" RenderTransformOrigin="0.444,-0.077"/>
+        <Label Content="Customers" HorizontalAlignment="Left" Margin="68,58,0,0" VerticalAlignment="Top" Width="108"/>
+        <Label Content="Flights Per Company" HorizontalAlignment="Left" Margin="68,97,0,0" VerticalAlignment="Top" Width="140"/>
+        <Label Content="Tickets Per Customer" HorizontalAlignment="Left" Margin="68,138,0,0" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.485,0.462"/>
+        <Label Content="Countries" HorizontalAlignment="Left" Margin="68,179,0,0" VerticalAlignment="Top" Width="108"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="252,27,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding AirlinesCom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="252,62,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.525,-0.174" Text="{Binding Customers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="252,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Flights, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="252,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Ticket, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="252,183,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Text="{Binding Countries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button x:Name="AddToDBButton" Command="{Binding AddToDBCommand}" Content="Add to DB" HorizontalAlignment="Left" Margin="482,75,0,0" VerticalAlignment="Top" Width="120" />
+        <Button x:Name="ReplaceDBButton" Command="{Binding ReplaceDBCommand}" Content="Replace DB" HorizontalAlignment="Left" Margin="482,115,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <ProgressBar x:Name="PB" HorizontalAlignment="Left" Height="24" Margin="59,251,0,0" VerticalAlignment="Top" Width="498" RenderTransformOrigin="0.51,2.5" 
+                     Value="{Binding Percent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Maximum="100"/>
+
+        <Label Content="Logging:" HorizontalAlignment="Left" Margin="59,290,0,0" VerticalAlignment="Top" Width="108"/>
+        <TextBlock  HorizontalAlignment="Left" Height="24" Margin="70,220,0,0" VerticalAlignment="Top" FontSize="22" >
+            <TextBlock.Text>
+                <MultiBinding  StringFormat="{}{0} % complete" >
+                    <Binding ElementName="PB" Path="Value"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <TextBox HorizontalAlignment="Left" Height="21" Margin="59,316,0,0" TextWrapping="Wrap" Text="{Binding Message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="543"/>
+
+    </Grid>
+</Window>
